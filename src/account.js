@@ -9,7 +9,9 @@ export default class Account {
     this.repository.save(new Transaction(amount))
   }
 
-  withdraw(amount) {}
+  withdraw(amount) {
+    this.repository.save(new Transaction(-amount))
+  }
 
   printStatement() {}
 }

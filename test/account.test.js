@@ -29,4 +29,18 @@ describe('Account', () => {
       )
     })
   })
+
+  describe('withdraw', () => {
+    it('saves a withdraw', () => {
+      account.withdraw(1000)
+
+      expect(transactionRepository.save).toHaveBeenCalledWith(new Transaction(-1000))
+    })
+
+    it('saves another withdraw', () => {
+      account.withdraw(500)
+
+      expect(transactionRepository.save).toHaveBeenCalledWith(new Transaction(-500))
+    })
+  })
 })
