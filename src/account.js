@@ -1,8 +1,9 @@
 import Transaction from './transaction'
 
 export default class Account {
-  constructor(repository) {
+  constructor(repository, printer) {
     this.repository = repository
+    this.printer = printer
   }
 
   deposit(amount) {
@@ -13,5 +14,11 @@ export default class Account {
     this.repository.save(new Transaction(-amount))
   }
 
-  printStatement() {}
+  printStatement() {
+    this.printer.printHeader()
+
+    this.repository.findAll().forEach(statement => {
+      this.printer.printStatement(statement)
+    })
+  }
 }
