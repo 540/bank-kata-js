@@ -1,5 +1,13 @@
+import Transaction from './transaction'
+
 export default class Account {
-  deposit(amount) {}
+  constructor(repository) {
+    this.repository = repository
+  }
+
+  deposit(amount) {
+    this.repository.save(new Transaction(amount))
+  }
 
   withdraw(amount) {}
 
